@@ -1,0 +1,24 @@
+-- Logitech G Hub Call of Duty Anti-Recoil Script
+
+function OnEvent(event, arg)
+    if event == "MOUSE_BUTTON_PRESSED" and arg == 1 then
+        anti_recoil_mode = not anti_recoil_mode
+        if anti_recoil_mode then
+            OutputLogMessage("Anti-recoil script enabled\n")
+        else
+            OutputLogMessage("Anti-recoil script disabled\n")
+        end
+    end
+
+    if event == "MOUSE_BUTTON_PRESSED" and arg == 2 then
+        anti_recoil_mode = false
+        OutputLogMessage("Anti-recoil script disabled\n")
+    end
+
+    if event == "G_PRESSED" and anti_recoil_mode then
+        -- Add your anti-recoil logic here
+        -- Make sure to adjust the values to match your weapon's recoil pattern
+        MoveMouseRelative(0, -5)  -- Example: Adjust vertical recoil
+        Sleep(10)  -- Adjust the delay between mouse movements
+    end
+end
